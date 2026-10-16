@@ -1,0 +1,43 @@
+{
+  "contractVersion": "v1.3",
+  "description": "体力系统配置 — R10 宽松原则（CONTRACT v1.3 §11.1）",
+  "maxStamina": 50,
+  "recoveryRate": {
+    "pointsPerInterval": 1,
+    "intervalMinutes": 2,
+    "description": "每 2 分钟恢复 1 点（远高于行业 5-10 分钟）"
+  },
+  "freeSources": [
+    { "key": "daily_login",       "name": "每日登录", "amount": 10, "description": "每日首次登录赠送" },
+    { "key": "ad_reward",         "name": "看广告",   "amount": 15, "dailyLimit": 5, "description": "每日可看 5 次广告获取体力" },
+    { "key": "level_up",          "name": "等级提升", "amount": 20, "description": "玩家等级提升时赠送" },
+    { "key": "pet_interact",      "name": "宠物互动", "amount": 5,  "dailyLimit": 3, "description": "抚摸/喂食宠物获得" },
+    { "key": "consecutive_clear", "name": "连续闯关", "amount": 3,  "trigger": "连续通关 5 关", "description": "连续闯关奖励" },
+    { "key": "friend_gift",       "name": "好友赠送", "amount": 5,  "dailyLimit": 3, "description": "好友间互赠体力" }
+  ],
+  "zeroStaminaFallback": {
+    "enabled": true,
+    "method": "ad_revive_free_play",
+    "description": "体力=0 时提供看广告免费玩一局入口，永不硬阻塞（R10）"
+  },
+  "newbieProtection": {
+    "first7DaysUnlimited": true,
+    "description": "新手前 7 日近乎无限体力，先建立习惯"
+  },
+  "staminaCostByMode": {
+    "casual": 0,
+    "arcade": 0,
+    "campaign": 1,
+    "bootcamp": 1,
+    "pvp": 0
+  },
+  "staminaCostBySegment": {
+    "teach": 0,
+    "basic": 1,
+    "advanced": 1,
+    "challenge": 1,
+    "smallBoss": 1,
+    "bigBoss": 2
+  },
+  "redLine": "R10: 禁止体力不足即锁死入口、强制付费才能继续。0 体力须有看广告免费玩通道。"
+}

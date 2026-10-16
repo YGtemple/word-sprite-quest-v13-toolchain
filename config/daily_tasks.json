@@ -1,0 +1,59 @@
+{
+  "contractVersion": "v1.3",
+  "description": "每日任务 + 7 日登录日历配置（CONTRACT v1.3 §11.4）",
+  "dailyTasks": {
+    "description": "每日 3 条任务，刷新时间 00:00（本地时区）",
+    "freePerDay": 3,
+    "tasks": [
+      {
+        "id": "daily_play_arcade",
+        "name": "玩 1 局街机",
+        "description": "在街机纯玩模式完成 1 局",
+        "type": "mode",
+        "condition": { "metric": "mode_played", "mode": "arcade", "value": 1 },
+        "reward": { "coins": 30, "stamina": 5 }
+      },
+      {
+        "id": "daily_campaign_3",
+        "name": "闯关 3 关",
+        "description": "在冒险闯关模式通关 3 关",
+        "type": "mode",
+        "condition": { "metric": "levels_completed", "mode": "campaign", "value": 3 },
+        "reward": { "coins": 50, "props": { "hint": 1 } }
+      },
+      {
+        "id": "daily_correct_30",
+        "name": "答对 30 题",
+        "description": "任意模式累计答对 30 题",
+        "type": "global",
+        "condition": { "metric": "total_correct", "value": 30 },
+        "reward": { "coins": 40, "stamina": 5 }
+      }
+    ]
+  },
+  "loginCalendar": {
+    "description": "7 日连续登录日历，第 7 日给稀有皮肤/宠物材料",
+    "cycle": 7,
+    "rewards": [
+      { "day": 1, "reward": { "coins": 50,  "stamina": 10 }, "description": "首日登录礼包" },
+      { "day": 2, "reward": { "coins": 50,  "stamina": 10, "props": { "hint": 2 } },    "description": "次日登录礼包" },
+      { "day": 3, "reward": { "coins": 80,  "stamina": 10, "props": { "shuffle": 1 } }, "description": "三日登录礼包" },
+      { "day": 4, "reward": { "coins": 80,  "stamina": 15, "props": { "freeze": 1 } },  "description": "四日登录礼包" },
+      { "day": 5, "reward": { "coins": 100, "stamina": 15, "props": { "hammer": 1 } },  "description": "五日登录礼包" },
+      { "day": 6, "reward": { "coins": 100, "stamina": 20, "props": { "revive": 1 } },  "description": "六日登录礼包" },
+      { "day": 7, "reward": { "coins": 200, "stamina": 30, "petMaterial": 5, "petSkin": 13 }, "description": "七日连续登录大奖：稀有皮肤 + 宠物材料", "isRare": true }
+    ],
+    "resetPolicy": "连续中断则从第 1 日重新开始；满 7 日后循环"
+  },
+  "asyncRanking": {
+    "description": "异步排行榜（§11.5），分模式榜单",
+    "boards": [
+      { "key": "rank_arcade",   "name": "街机榜",     "mode": "arcade",   "scope": "week" },
+      { "key": "rank_campaign", "name": "闯关榜",     "mode": "campaign", "scope": "week" },
+      { "key": "rank_bootcamp", "name": "集训榜",     "mode": "bootcamp", "scope": "week" },
+      { "key": "rank_total",    "name": "综合学力榜", "mode": "all",      "scope": "total" }
+    ],
+    "refreshInterval": "每小时异步刷新",
+    "pvpNote": "实时 1v1 PvP 属 Phase3（CONTRACT §4.1），MVP 用异步排行榜占位"
+  }
+}

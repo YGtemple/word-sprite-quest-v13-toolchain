@@ -1,0 +1,51 @@
+{
+  "contractVersion": "v1.3",
+  "description": "道具系统配置 — 5 类道具（CONTRACT v1.3 §11.2）",
+  "props": [
+    {
+      "key": "hint", "name": "提示", "nameEn": "hint", "icon": "prop_hint",
+      "effect": "高亮正确项或排除一个错误项",
+      "inGameTrigger": "点击提示按钮",
+      "rarity": "common",
+      "dropRate": { "normal": 0.15, "boss": 0.30, "arcade": 0.10 }
+    },
+    {
+      "key": "shuffle", "name": "洗牌", "nameEn": "shuffle", "icon": "prop_shuffle",
+      "effect": "重新打乱题目或选项排列",
+      "inGameTrigger": "点击洗牌按钮",
+      "rarity": "common",
+      "dropRate": { "normal": 0.10, "boss": 0.25, "arcade": 0.05 }
+    },
+    {
+      "key": "freeze", "name": "冻结", "nameEn": "freeze", "icon": "prop_freeze",
+      "effect": "暂停计时 5 秒",
+      "inGameTrigger": "点击冻结按钮",
+      "rarity": "uncommon",
+      "dropRate": { "normal": 0.08, "boss": 0.20, "arcade": 0.05 }
+    },
+    {
+      "key": "hammer", "name": "锤子", "nameEn": "hammer", "icon": "prop_hammer",
+      "effect": "直接消除/跳过当前题目",
+      "inGameTrigger": "点击锤子按钮",
+      "rarity": "rare",
+      "dropRate": { "normal": 0.05, "boss": 0.15, "arcade": 0.03 }
+    },
+    {
+      "key": "revive", "name": "复活", "nameEn": "revive", "icon": "prop_revive",
+      "effect": "失败后满血继续本局",
+      "inGameTrigger": "失败结算面板点击复活",
+      "rarity": "epic",
+      "dropRate": { "normal": 0.02, "boss": 0.10, "arcade": 0.05 }
+    }
+  ],
+  "sources": [
+    { "key": "level_clear",  "name": "关卡结算掉落", "description": "按 dropRate 概率掉落" },
+    { "key": "daily_task",   "name": "每日任务",     "description": "完成每日任务奖励" },
+    { "key": "event",        "name": "活动",         "description": "限时活动赠送" },
+    { "key": "pet_interact", "name": "宠物互动",     "description": "宠物互动偶尔产出" }
+  ],
+  "paidOnly": false,
+  "paidPolicy": "付费仅加速获取，非付费墙。所有道具均可免费获得。",
+  "initialInventory": { "hint": 3, "shuffle": 1, "freeze": 1, "hammer": 0, "revive": 0 },
+  "maxInventory":     { "hint": 99, "shuffle": 99, "freeze": 99, "hammer": 50, "revive": 20 }
+}
