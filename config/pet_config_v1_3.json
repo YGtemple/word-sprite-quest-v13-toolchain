@@ -1,0 +1,83 @@
+{
+  "contractVersion": "v1.3",
+  "description": "宠物养成配置 — 5 阶段进化 + 14 皮肤 + 元留存层奖励挂钩（CONTRACT v1.3 §5 萌宠养成元系统 + §11 元留存层）",
+  "stages": [
+    { "stage": 1, "name": "幼灵",   "nameEn": "spiritling",   "unlockCondition": "默认解锁",   "spineSkin": "stage1_spiritling",   "description": "初生的紫色精灵，圆润可爱" },
+    { "stage": 2, "name": "成长体", "nameEn": "growth",       "unlockCondition": "通关第2章",  "spineSkin": "stage2_growth",       "description": "体型增大，开始展现个性" },
+    { "stage": 3, "name": "觉醒体", "nameEn": "awakened",     "unlockCondition": "通关第4章",  "spineSkin": "stage3_awakened",     "description": "觉醒力量，光芒环绕" },
+    { "stage": 4, "name": "超灵体", "nameEn": "transcendent", "unlockCondition": "通关第6章",  "spineSkin": "stage4_transcendent", "description": "超越凡灵，气场强大" },
+    { "stage": 5, "name": "终极体", "nameEn": "ultimate",     "unlockCondition": "通关第8章",  "spineSkin": "stage5_ultimate",     "description": "终极形态，璀璨夺目" }
+  ],
+  "skins": [
+    { "id": 1,  "name": "紫色精灵（默认）", "type": "basic",       "unlockCondition": "默认解锁",             "spineSkin": "skin_default" },
+    { "id": 2,  "name": "森林精灵",         "type": "chapter",     "unlockCondition": "通关第1章大Boss",      "spineSkin": "skin_ch1_forest" },
+    { "id": 3,  "name": "学院精灵",         "type": "chapter",     "unlockCondition": "通关第2章大Boss",      "spineSkin": "skin_ch2_campus" },
+    { "id": 4,  "name": "厨房精灵",         "type": "chapter",     "unlockCondition": "通关第3章大Boss",      "spineSkin": "skin_ch3_kitchen" },
+    { "id": 5,  "name": "星际精灵",         "type": "chapter",     "unlockCondition": "通关第4章大Boss",      "spineSkin": "skin_ch4_space" },
+    { "id": 6,  "name": "深海精灵",         "type": "chapter",     "unlockCondition": "通关第5章大Boss",      "spineSkin": "skin_ch5_ocean" },
+    { "id": 7,  "name": "运动精灵",         "type": "chapter",     "unlockCondition": "通关第6章大Boss",      "spineSkin": "skin_ch6_sports" },
+    { "id": 8,  "name": "艺术精灵",         "type": "chapter",     "unlockCondition": "通关第7章大Boss",      "spineSkin": "skin_ch7_art" },
+    { "id": 9,  "name": "旅行精灵",         "type": "chapter",     "unlockCondition": "通关第8章大Boss",      "spineSkin": "skin_ch8_travel" },
+    { "id": 10, "name": "无限挑战·铜",      "type": "achievement", "unlockCondition": "无限挑战答对100题",    "spineSkin": "skin_infinite_bronze" },
+    { "id": 11, "name": "无限挑战·银",      "type": "achievement", "unlockCondition": "无限挑战答对300题",    "spineSkin": "skin_infinite_silver" },
+    { "id": 12, "name": "无限挑战·金",      "type": "achievement", "unlockCondition": "无限挑战答对500题",    "spineSkin": "skin_infinite_gold" },
+    { "id": 13, "name": "每日挑战·七日",    "type": "daily",       "unlockCondition": "连续7天完成每日挑战",   "spineSkin": "skin_daily_7" },
+    { "id": 14, "name": "每日挑战·月冠",    "type": "daily",       "unlockCondition": "连续30天完成每日挑战",  "spineSkin": "skin_daily_30" }
+  ],
+  "resourcePool": {
+    "description": "跨模式资源闭环（R9），所有模式结算经 grantResources 入账",
+    "currencies": [
+      {
+        "key": "coin",
+        "name": "金币",
+        "sources": ["casual", "campaign", "bootcamp", "arcade"],
+        "weight": { "casual": 0.5, "campaign": 1.0, "bootcamp": 1.5, "arcade": 0.5 }
+      },
+      {
+        "key": "material",
+        "name": "材料",
+        "sources": ["campaign", "bootcamp"],
+        "weight": { "campaign": 1.0, "bootcamp": 2.0 }
+      }
+    ],
+    "energy": {
+      "dailyLogin": 50,
+      "adReward": 100,
+      "adRewardDailyLimit": 1
+    },
+    "coinRewards": {
+      "smallBoss": 100,
+      "bigBoss": 200
+    }
+  },
+  "metaRetention": {
+    "description": "v1.3 新增：宠物系统与元留存层联动（CONTRACT §11）",
+    "staminaHook": {
+      "source": "pet_interact",
+      "amount": 5,
+      "dailyLimit": 3,
+      "description": "宠物互动产出体力（R10 免费渠道之一）"
+    },
+    "propHook": {
+      "chance": 0.10,
+      "description": "宠物互动偶尔掉落道具"
+    },
+    "calendarHook": {
+      "day": 7,
+      "petMaterial": 5,
+      "petSkin": 13,
+      "description": "7 日连续登录给稀有皮肤 + 材料"
+    },
+    "rankingHook": {
+      "topN": 100,
+      "reward": "avatar_frame_arcade_top10",
+      "description": "排行榜前 100 名获得限定头像框"
+    }
+  },
+  "spineConfig": {
+    "skeletonFile": "pet_skeleton.skel",
+    "atlasFile": "pet_skeleton.atlas",
+    "switchMethod": "sp.Skeleton.setSkin()",
+    "description": "1 套骨骼 + 14 套皮肤贴图"
+  }
+}
